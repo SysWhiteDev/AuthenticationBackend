@@ -25,9 +25,9 @@ This is an effort to fix JWTs biggest problem, which is invalidating tokens.
 
 ## Tech Stack
 
-**Backend**: ExpressJS, Prisma, SQLite</br>
+**Backend**: ExpressJS, bcrypt, prisma, SQLite</br>
 **Frontend**: NextJS
 
 ### Why prisma for the db?
 
-The database is managed with the prisma ORM, I made this choice since i plan to use this with real world projects and using an ORM it's the safest way to interact with a database on the server, plus if I want to use another db technology than sqlite I can easily switch to it (You can read more [here](https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a)).
+The database is managed with the prisma ORM, I made this choice since I plan to use this with real world projects and using an ORM it's the safest way to interact with a database on the server, plus if I want to use another db technology than sqlite I can easily switch to it (You can read more [here](https://blog.bitsrc.io/what-is-an-orm-and-why-you-should-use-it-b2b6f75f5e2a)).
