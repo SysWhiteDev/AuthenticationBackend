@@ -20,7 +20,10 @@ export default function Home() {
     if (localStorage.getItem("token") !== null) {
       router.push("/");
     }
-  }, [router]);
+    if (!action) {
+      router.push("?action=login")
+    }
+  }, [router, action]);
 
   async function resetForm() {
     setError("");
@@ -28,6 +31,7 @@ export default function Home() {
     setUsername("");
     setPassword("");
   }
+
   async function tryRegister() {
     try {
       setLoading(true);
@@ -94,6 +98,7 @@ export default function Home() {
         }
       }
       localStorage.setItem("token", data.token);
+      router.push("/")
     } catch (err: any) {
       setError(err.toString());
       setTimeout(() => {
