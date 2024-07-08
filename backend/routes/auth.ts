@@ -20,14 +20,14 @@ auth.post("/register", async (req, res) => {
         return;
     }
     if (!usernameRegex.test(username)) {
-        res.status(400).json({
+        res.status(200).json({
             status: "error",
             message: "invalid_username"
         });
         return;
     }
     if (!passwordRegex.test(password)) {
-        res.status(400).json({
+        res.status(200).json({
             status: "error",
             message: "invalid_password"
         });

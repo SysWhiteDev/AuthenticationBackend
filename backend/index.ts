@@ -3,6 +3,10 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
+var cors = require('cors')
+app.use(cors());
+
+
 import auth from "./routes/auth";
 app.use("/auth", auth);
 
