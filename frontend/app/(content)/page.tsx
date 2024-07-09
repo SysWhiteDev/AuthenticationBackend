@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -27,16 +28,15 @@ export default function Page() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        if (!data.user) {
-          localStorage.removeItem("token");
-          router.push("/auth?action=login");
-          return;
-        }
-        setUser(data.user);
-      })
+    }).then(async (response) => {
+      const data = await response.json();
+      if (!data.user) {
+        localStorage.removeItem("token");
+        router.push("/auth?action=login");
+        return;
+      }
+      setUser(data.user);
+    });
   }
 
   async function logOut() {
@@ -79,7 +79,7 @@ export default function Page() {
           </div>
           <button
             onClick={() => logOut()}
-            className="w-full relative bg-red-700 hover:bg-red-800 transition-all bg-opacity-70 justify-center gap-1.5 bg-opacity-80 px-3 py-2.5 flex items-center text-sm text-red-200 rounded-xl"
+            className="w-full relative bg-red-700 hover:bg-red-800 transition-all bg-opacity-70 justify-center gap-1.5 px-3 py-2.5 flex items-center text-sm text-red-200 rounded-xl"
           >
             {loading ? (
               <ClipLoader

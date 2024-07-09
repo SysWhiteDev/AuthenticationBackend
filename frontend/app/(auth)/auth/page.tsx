@@ -21,7 +21,7 @@ export default function Home() {
       router.push("/");
     }
     if (!action) {
-      router.push("?action=login")
+      router.push("?action=login");
     }
   }, [router, action]);
 
@@ -98,7 +98,7 @@ export default function Home() {
         }
       }
       localStorage.setItem("token", data.token);
-      router.push("/")
+      router.push("/");
     } catch (err: any) {
       setError(err.toString());
       setTimeout(() => {
