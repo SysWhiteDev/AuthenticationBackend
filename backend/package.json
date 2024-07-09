@@ -3,11 +3,12 @@
   "module": "index.ts",
   "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "nodemon": "^3.1.4",
+    "typescript": "^5.5.3"
   },
   "scripts": {
-    "start": "bun run index.ts | pino-pretty",
-    "dev": "bun --watch index.ts | pino-pretty"
+    "start": "npx tsx index.ts | pino-pretty",
+    "dev": "nodemon --exec tsx index.ts | pino-pretty"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -24,6 +25,7 @@
     "jsonwebtoken": "^9.0.2",
     "pino": "^9.2.0",
     "pino-pretty": "^11.2.1",
-    "prisma": "^5.16.1"
+    "prisma": "^5.16.1",
+    "tsx": "^4.16.2"
   }
 }

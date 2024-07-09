@@ -1,10 +1,11 @@
-const logger = require("pino")();
+import pino from "pino";
+const logger = pino();
 import express from "express";
 import jwt from "jsonwebtoken";
 const app = express();
 app.use(express.json());
 
-var cors = require('cors')
+import cors from "cors";
 app.use(cors());
 
 
