@@ -6,11 +6,13 @@ import { useRouter } from "next/navigation";
 import { GoXCircleFill } from "react-icons/go";
 import { ClipLoader } from "react-spinners";
 import { useSearchParams } from "next/navigation";
-
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { FaArrowRight } from "react-icons/fa6";
 export default function Home() {
   const searchParams = useSearchParams();
   const action = searchParams.get("action");
   const router = useRouter();
+  const [parent, enableAnimations] = useAutoAnimate(/* optional config */);
   const [username, setUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string>("");
@@ -115,7 +117,7 @@ export default function Home() {
         <div className="h-[450px] w-1/2 bg-purple-500" />
         <div className="h-[450px] absolute bottom-0 right-0 w-[300px] bg-yellow-500" />
       </div>
-      <div className="min-h-[450px] flex flex-col items-center justify-between w-[450px] p-4 bg-white border-2 bg-opacity-85 border-neutral-200 rounded-3xl shadow-lg">
+      <div className=" min-h-[450px] flex flex-col items-center justify-between w-[450px] p-4 bg-white border-2 bg-opacity-85 border-neutral-200 rounded-3xl shadow-lg">
         <div className="text-center min-h-[186px] flex-[1.3] flex justify-center items-center flex-col w-full">
           <Image
             src={"/assets/logo.png"}
@@ -144,7 +146,7 @@ export default function Home() {
                 className="w-full rounded-full border bg-transparent border-neutral-400 py-2 px-4"
               />
             </div>
-            <div>
+            <div ref={parent}>
               <p className="text-xs font-semibold mb-1">Password</p>
               <input
                 type="password"
@@ -164,18 +166,42 @@ export default function Home() {
             {action === "register" ? (
               <button
                 onClick={() => tryRegister()}
-                className="bg-neutral-900 flex items-center justify-center gap-3 text-white w-full py-2 rounded-full text-md shadow hover:bg-neutral-800 transition-all"
+                className="bg-neutral-900 group flex items-center justify-center text-white w-full py-2 rounded-full text-md shadow hover:bg-neutral-800 transition-all"
               >
                 Register
-                <ClipLoader loading={loading} color="white" size={14} />
+                {!loading ? (
+                  <FaArrowRight
+                    className="group-hover:w-[14px] w-[0px] ml-0 group-hover:ml-2 transition-all"
+                    size={14}
+                  />
+                ) : (
+                  <ClipLoader
+                    loading={loading}
+                    color="white"
+                    className="ml-2"
+                    size={14}
+                  />
+                )}
               </button>
             ) : (
               <button
                 onClick={() => tryLogin()}
-                className="bg-neutral-900 flex items-center justify-center gap-3 text-white w-full py-2 rounded-full text-md shadow hover:bg-neutral-800 transition-all"
+                className="bg-neutral-900 group flex items-center justify-center text-white w-full py-2 rounded-full text-md shadow hover:bg-neutral-800 transition-all"
               >
                 Sign In
-                <ClipLoader loading={loading} color="white" size={14} />
+                {!loading ? (
+                  <FaArrowRight
+                    className="group-hover:w-[14px] w-[0px] ml-0 group-hover:ml-2 transition-all"
+                    size={14}
+                  />
+                ) : (
+                  <ClipLoader
+                    loading={loading}
+                    color="white"
+                    className="ml-2"
+                    size={14}
+                  />
+                )}
               </button>
             )}
             {action === "login" ? (
